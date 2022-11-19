@@ -3,7 +3,7 @@ import Editor from "@monaco-editor/react";
 import { Picker } from "./Picker";
 import { Button } from "./Button";
 
-export const CodeEditor = ({ onSubmit, languages, code }) => {
+export const CodeEditor = ({ style, onSubmit, languages, code }) => {
 	const [value, setValue] = useState(code || "");
 	const [language, setLanguage] = useState();
 
@@ -23,7 +23,7 @@ export const CodeEditor = ({ onSubmit, languages, code }) => {
 	};
 
 	return (
-		<div>
+		<div style={{ ...styles.container, ...style }}>
 			<Picker
 				style={styles.language}
 				placeholder='Language'
@@ -31,7 +31,6 @@ export const CodeEditor = ({ onSubmit, languages, code }) => {
 				onChange={lang => handleLanguageChange(lang)}
 			/>
 			<Editor
-				height='85vh'
 				width={`100%`}
 				language={language ? language.code : "plaintext"}
 				value={
@@ -50,6 +49,9 @@ export const CodeEditor = ({ onSubmit, languages, code }) => {
 };
 
 const styles = {
+	container: {
+		height: "80vh",
+	},
 	language: {
 		float: "right",
 		margin: "0.5em 5%",

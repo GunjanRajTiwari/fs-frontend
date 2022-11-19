@@ -49,5 +49,6 @@ const styles = {
 		backgroundColor: colors.light,
 		maxHeight: "200px",
 		overflowY: "auto",
+		minWidth: "120px",
 	},
 };

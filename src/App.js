@@ -1,12 +1,10 @@
-import { Button } from "./components/Button";
-import { CodeEditor } from "./components/CodeEditor";
 import { Login } from "./pages/Login";
-import languages from "./config/languages";
+import { ProblemPage } from "./pages/ProblemPage";
 
 function App() {
 	return (
 		<div className='App'>
-			<CodeEditor languages={languages} />
+			<ProblemPage />
 		</div>
 	);
 }

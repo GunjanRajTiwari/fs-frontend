@@ -1,7 +1,12 @@
-import "./App.css";
+import { Button } from "./components/Button";
+import { Login } from "./pages/Login";
 
 function App() {
-	return <div className='App'>Fourspace</div>;
+	return (
+		<div className='App'>
+			<Login />
+		</div>
+	);
 }
 
 export default App;

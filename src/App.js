@@ -1,11 +1,13 @@
 import { Button } from "./components/Button";
+import { CodeEditor } from "./components/CodeEditor";
 import { Login } from "./pages/Login";
 import { Profile } from "./pages/Profile";
+import languages from "./config/languages";
 
 function App() {
 	return (
 		<div className='App'>
-			<Login />
+			<CodeEditor languages={languages} />
 		</div>
 	);
 }

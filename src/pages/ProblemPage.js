@@ -57,6 +57,7 @@ const styles = {
 	container: {
 		display: "grid",
 		gridTemplateColumns: "1fr 1fr",
+		backgroundColor: colors.white,
 	},
 	title: {
 		fontWeight: 500,

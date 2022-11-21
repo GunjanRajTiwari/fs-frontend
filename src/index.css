@@ -1,30 +1,37 @@
-:root {
-	--primary: "#1f1f21",
-	--secondary: "#38b4ad",
-	--third: "#df778b",
-	--black: "#000",
-	--white: "#fff",
-	--medium: "#696e69",
-	--light: "#f0f4f0",
-	--danger: "#ff5555",
-	--dark: "#0c0c0c",
+html {
+	--primary: #1f1f21;
+	--secondary: #38b4ad;
+	--third: #df778b;
+	--black: #000;
+	--white: #fff;
+	--medium: #696e69;
+	--light: #f0f4f0;
+	--danger: #ff5555;
+	--dark: #0c0c0c;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  font-family: 'Poppins','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--dark)
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	font-family: "Poppins", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: var(--dark);
+	background-color: var(--light);
+	font-size: 0.8rem;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 .highlight-light:hover {
-    background-color: var(--light);
+	background-color: var(--light);
+}
+
+.extend {
+	width: 100%;
 }

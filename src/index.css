@@ -4,10 +4,21 @@ html {
 	--third: #df778b;
 	--black: #000;
 	--white: #fff;
-	--medium: #696e69;
-	--light: #f0f4f0;
+	--medium: #696a69;
+	--light: #f0f1f0;
 	--danger: #ff5555;
 	--dark: #0c0c0c;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 0.4em 0;
 }
 
 body {

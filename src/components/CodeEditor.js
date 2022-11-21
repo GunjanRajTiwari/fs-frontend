@@ -50,7 +50,7 @@ export const CodeEditor = ({ style, onSubmit, languages, code }) => {
 
 const styles = {
 	container: {
-		height: "80vh",
+		height: "75vh",
 	},
 	language: {
 		float: "right",

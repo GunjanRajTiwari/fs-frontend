@@ -1,4 +1,3 @@
-import { Login } from "./pages/Login";
 import { ProblemPage } from "./pages/ProblemPage";
 
 function App() {

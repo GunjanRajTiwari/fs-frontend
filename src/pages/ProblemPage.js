@@ -1,5 +1,6 @@
 import React from "react";
 import { CodeEditor } from "../components/CodeEditor";
+import { Navbar } from "../components/Navbar";
 import { SubNav } from "../components/SubNav";
 import colors from "../config/colors";
 
@@ -9,7 +10,7 @@ import problemMenu from "../config/problemMenu";
 export const ProblemPage = () => {
 	return (
 		<div style={styles.page}>
-			<div>FourSpace</div>
+			<Navbar />
 			<div style={styles.container}>
 				<div style={styles.left}>
 					<h3 style={styles.title}>1. Two Sum</h3>
@@ -57,6 +58,7 @@ const styles = {
 	container: {
 		display: "grid",
 		gridTemplateColumns: "1fr 1fr",
+		backgroundColor: colors.white,
 	},
 	title: {
 		fontWeight: 500,
@@ -70,6 +72,6 @@ const styles = {
 		color: colors.dark,
 		whiteSpace: "pre-wrap",
 		overflowY: "auto",
-		height: "75vh",
+		height: "80vh",
 	},
 };

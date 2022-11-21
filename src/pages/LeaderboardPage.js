@@ -1,5 +1,6 @@
 import React from "react";
 import { Leaderboard } from "../components/Leaderboard";
+import { Navbar } from "../components/Navbar";
 
 const data = [
 	{
@@ -8,17 +9,17 @@ const data = [
 		score: 1987,
 	},
 	{
-		rank: 2,
+		rank: 20,
 		name: "Sandesh Dhungana",
 		score: 1965,
 	},
 	{
-		rank: 3,
+		rank: 300,
 		name: "Umesh Saud",
 		score: 1958,
 	},
 	{
-		rank: 4,
+		rank: 4000,
 		name: "Tourist",
 		score: 1922,
 	},
@@ -27,8 +28,9 @@ const data = [
 export const LeaderboardPage = () => {
 	return (
 		<div>
+			<Navbar />
 			<h2 style={styles.heading}>Top Force</h2>
-			<Leaderboard data={data} />
+			<Leaderboard data={data} showLabel />
 		</div>
 	);
 };

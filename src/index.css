@@ -39,7 +39,7 @@ code {
 		monospace;
 }
 
-.highlight-light:hover {
+.highlight:hover {
 	background-color: var(--light);
 }
 

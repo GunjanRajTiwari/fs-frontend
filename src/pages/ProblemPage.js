@@ -10,7 +10,6 @@ import problemMenu from "../config/problemMenu";
 export const ProblemPage = () => {
 	return (
 		<div style={styles.page}>
-			<Navbar />
 			<div style={styles.container}>
 				<div style={styles.left}>
 					<h3 style={styles.title}>1. Two Sum</h3>

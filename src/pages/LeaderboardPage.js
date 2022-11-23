@@ -28,7 +28,6 @@ const data = [
 export const LeaderboardPage = () => {
 	return (
 		<div>
-			<Navbar />
 			<h2 style={styles.heading}>Top Force</h2>
 			<Leaderboard data={data} showLabel />
 		</div>

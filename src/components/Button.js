@@ -18,7 +18,7 @@ const styles = {
 		borderRadius: "1em",
 		textTransform: "uppercase",
 		fontWeight: 500,
-		width: "fit-content",
 		border: "none",
+		cursor: "pointer",
 	},
 };

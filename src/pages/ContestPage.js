@@ -1,12 +1,12 @@
 import React from "react";
-import { Navbar } from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 import { NumberCard } from "../components/NumberCard";
 import colors from "../config/colors";
 
 export const ContestPage = () => {
+	const navigate = useNavigate();
 	return (
 		<div>
-			<Navbar />
 			<h1 style={styles.heading}>Weekly Drive 1</h1>
 			<p style={styles.heading}>Starting in: 00:02:33</p>
 			<div style={styles.problemList}>
@@ -15,6 +15,7 @@ export const ContestPage = () => {
 					title='Trapping Rain Water'
 					subTitle='Solved by: 152'
 					info='20 points'
+					onClick={() => navigate("/problem")}
 				/>
 				<NumberCard
 					number='B'
@@ -30,8 +31,8 @@ export const ContestPage = () => {
 				/>
 			</div>
 			<div style={styles.description}>
-				This contest will have 3 questions of varying difficulty. Bla
-				bla bla description about the contest
+				This contest will have 3 questions of varying difficulty.
+				Bla bla bla description about the contest
 			</div>
 		</div>
 	);

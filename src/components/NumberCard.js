@@ -2,9 +2,12 @@ import React from "react";
 import colors from "../config/colors";
 import { FaChevronRight } from "react-icons/fa";
 
-export const NumberCard = ({ number, title, subTitle, info }) => {
+export const NumberCard = ({ number, title, subTitle, info, onClick }) => {
 	return (
-		<div className='highlight' style={styles.container}>
+		<div
+			onClick={onClick}
+			className='highlight'
+			style={styles.container}>
 			<div style={styles.number}>{number || "#"}</div>
 			<div style={styles.main}>
 				<h3>{title}</h3>

@@ -1,44 +1,29 @@
 import React from "react";
 import colors from "../config/colors";
 import { Button } from "../components/Button";
-import { GoogleLogin } from 'react-google-login';
 
-const client_id = "950372290433-p4ul0fqt9i4721fdqnvdbmi12rbp7hhs.apps.googleusercontent.com";
+const client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-export const Login = () => {
-
-	const onSuccess = (res) => {
-        console.log(res)
-        console.log("Login Success!! Current user is :: ", res.profileObj);
-    }
-
-    const onFailure = (res) => {
-        console.log("Login Failed!! res :: ", res);
-    }
+export const Login = ({ setUser, setSignedIn }) => {
+	const googleLogin = () => {
+		window.open(process.env.REACT_APP_API + "/auth/google", "_self");
+	};
 
 	return (
 		<div style={styles.container}>
 			<div style={styles.left}>
-				<div style={styles.logo}>Fourspace</div>
+				<img style={styles.logo} src='./logo-white.png' />
 				<h1 style={styles.heading}>
 					Nepal's best Competitive Programming platform.
 				</h1>
 			</div>
 			<div style={styles.right}>
-				{/* <Button title='Login with Google' /> */}
-				<div id="signInButton">
-					<GoogleLogin 
-						clientId = {client_id}
-						render={renderProps => (
-							<Button onClick={renderProps.onClick} disabled={renderProps.disabled} title='Login with Google' />
-						)}
-						buttonText = "Login"
-						onSuccess = {onSuccess}
-						onFailure = {onFailure}
-						cookiePolicy = {'single_host_origin'}
-						isSignedIn = {true}
+				<div id='signInButton'>
+					<Button
+						title='Login with Google'
+						onClick={googleLogin}
 					/>
-        		</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -65,9 +50,10 @@ const styles = {
 	},
 	logo: {
 		position: "absolute",
-		padding: "1em",
+		margin: "2em",
 		left: 0,
 		top: 0,
+		height: "16px",
 	},
 	heading: {
 		maxWidth: "400px",
@@ -75,4 +61,3 @@ const styles = {
 		lineHeight: "1.8em",
 	},
 };
-

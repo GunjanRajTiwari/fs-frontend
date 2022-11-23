@@ -1,11 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { ImageCard } from "../components/ImageCard";
-import { Navbar } from "../components/Navbar";
 
 export const ContestListPage = () => {
+	const navigate = useNavigate();
 	return (
 		<div>
-			<Navbar />
 			<h1 style={{ textAlign: "center" }}> Brand New</h1>
 			<div style={styles.grid}>
 				<ImageCard
@@ -13,6 +13,7 @@ export const ContestListPage = () => {
 					subTitle='2022-11-25 @ 8:00 PM'
 					info='2k Participants'
 					image='./drive.jpeg'
+					onClick={() => navigate("contest")}
 				/>
 				<ImageCard
 					title='Off Road 1'

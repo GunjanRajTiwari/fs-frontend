@@ -1,29 +1,29 @@
 import { ProblemPage } from "./pages/ProblemPage";
 import LogoutButton from "./components/googlelogout";
-import { useEffect } from 'react';
-import { gapi } from 'gapi-script';
-import { Login } from "./pages/Login"
+import { useEffect, useState } from "react";
+import { gapi } from "gapi-script";
+import { Login } from "./pages/Login";
 
-const client_id = "950372290433-p4ul0fqt9i4721fdqnvdbmi12rbp7hhs.apps.googleusercontent.com";
+const client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
+	const [user, setUser] = useState();
+
+	function start() {
+		gapi.auth2.init({
+			client_id: process.env.client_id,
+			scope: "",
+		});
+	}
 
 	useEffect(() => {
-		function start() {
-			gapi.auth2.init({
-				client_id : client_id,
-				scope : ""
-			})
-		}
-
-		gapi.load('client:auth2', start);
-	});
-
+		gapi.load("client:auth2", start);
+	}, []);
 	return (
 		<div className='App'>
+			{/* <ProblemPage />; */}
 			<Login />
 			<LogoutButton />
-			{/* <ProblemPage /> */}
 		</div>
 	);
 }

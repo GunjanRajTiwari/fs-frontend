@@ -1,11 +1,14 @@
 import React from "react";
+import { FaRegUser } from "react-icons/fa";
 import colors from "../config/colors";
 
 export const Navbar = () => {
 	return (
 		<div style={styles.container}>
-			<img src='./logo.png' />
-			<div>Profile</div>
+			<img style={styles.logo} src='./logo-white.png' />
+			<div>
+				<FaRegUser />
+			</div>
 		</div>
 	);
 };
@@ -19,5 +22,8 @@ const styles = {
 		justifyContent: "space-between",
 		alignItems: "center",
 		padding: "1em 2em",
+	},
+	logo: {
+		height: "20px",
 	},
 };

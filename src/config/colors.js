@@ -4,10 +4,12 @@ const colors = {
 	third: "#df778b",
 	black: "#000",
 	white: "#fff",
-	medium: "#696e69",
-	light: "#f4f8f4",
+	medium: "#696a69",
+	light: "#f0f1f0",
 	danger: "#ff5555",
 	dark: "#0c0c0c",
+	shadow: "0 0 8px #696e6955",
+	shadowLight: "0 0 8px #f4f4f455",
 };
 
 export default colors;

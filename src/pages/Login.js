@@ -1,8 +1,21 @@
 import React from "react";
 import colors from "../config/colors";
 import { Button } from "../components/Button";
+import { GoogleLogin } from 'react-google-login';
+
+const client_id = "950372290433-p4ul0fqt9i4721fdqnvdbmi12rbp7hhs.apps.googleusercontent.com";
 
 export const Login = () => {
+
+	const onSuccess = (res) => {
+        console.log(res)
+        console.log("Login Success!! Current user is :: ", res.profileObj);
+    }
+
+    const onFailure = (res) => {
+        console.log("Login Failed!! res :: ", res);
+    }
+
 	return (
 		<div style={styles.container}>
 			<div style={styles.left}>
@@ -12,7 +25,20 @@ export const Login = () => {
 				</h1>
 			</div>
 			<div style={styles.right}>
-				<Button title='Login with Google' />
+				{/* <Button title='Login with Google' /> */}
+				<div id="signInButton">
+					<GoogleLogin 
+						clientId = {client_id}
+						render={renderProps => (
+							<Button onClick={renderProps.onClick} disabled={renderProps.disabled} title='Login with Google' />
+						)}
+						buttonText = "Login"
+						onSuccess = {onSuccess}
+						onFailure = {onFailure}
+						cookiePolicy = {'single_host_origin'}
+						isSignedIn = {true}
+					/>
+        		</div>
 			</div>
 		</div>
 	);
@@ -49,3 +75,4 @@ const styles = {
 		lineHeight: "1.8em",
 	},
 };
+

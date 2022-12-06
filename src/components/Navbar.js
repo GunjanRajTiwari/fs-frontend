@@ -25,7 +25,8 @@ export const Navbar = () => {
 					<Link
 						style={styles.item}
 						className='highlight'
-						to='/profile'>
+						to='/profile'
+						onClick={() => setDropdown(false)}>
 						Profile
 					</Link>
 					<Button title='Logout' onClick={handleLogout} />

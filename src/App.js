@@ -8,16 +8,21 @@ import { ContestListPage } from "./pages/ContestListPage";
 import { ContestPage } from "./pages/ContestPage";
 import { ProblemPage } from "./pages/ProblemPage";
 import { LeaderboardPage } from "./pages/LeaderboardPage";
+import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
 	const userObject = useContext(userContext);
+
 	if (!userObject) return <Login />;
+
 	return (
 		<div className='App'>
 			<Navbar />
 			<Routes>
 				<Route path='/' element={<ContestListPage />} />
-				<Route path='/contest' element={<ContestPage />} />
+				<Route path='/contests' element={<ContestListPage />} />
+				<Route path='/contests/:id' element={<ContestPage />} />
+				<Route path='/profile' element={<ProfilePage />} />
 				<Route path='/problem' element={<ProblemPage />} />
 				<Route path='/leaderboard' element={<LeaderboardPage />} />
 			</Routes>

@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { CodeEditor } from "../components/CodeEditor";
-import { Navbar } from "../components/Navbar";
 import { SubNav } from "../components/SubNav";
-import colors from "../config/colors";
+import { Submissions } from "../components/Submissions";
 
+import colors from "../config/colors";
 import languages from "../config/languages";
 import problemMenu from "../config/problemMenu";
 
 export const ProblemPage = () => {
+	const [active, setActive] = useState(problemMenu[0].value);
 	return (
 		<div style={styles.page}>
 			<div style={styles.container}>
 				<div style={styles.left}>
 					<h3 style={styles.title}>1. Two Sum</h3>
-					<SubNav menu={problemMenu} />
-					<div style={styles.description}>
-						{`
+					<SubNav
+						menu={problemMenu}
+						active={active}
+						setActive={setActive}
+					/>
+					{active === 1 && (
+						<div style={styles.description}>
+							{`
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice You can return the answer in any order.
@@ -45,7 +51,9 @@ Constraints:
 -109 <= target <= 109
 Only one valid answer exists.
 s`}
-					</div>
+						</div>
+					)}
+					{active === 2 && <Submissions />}
 				</div>
 				<CodeEditor style={styles.right} languages={languages} />
 			</div>

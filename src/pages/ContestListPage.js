@@ -1,41 +1,62 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageCard } from "../components/ImageCard";
 
 export const ContestListPage = () => {
 	const navigate = useNavigate();
+	const [contests, setContests] = useState();
+	const [pastContests, setPastContests] = useState();
+
+	useEffect(() => {
+		loadContests();
+		loadPastContests();
+	}, []);
+
+	const loadContests = async () => {
+		const result = await axios.get("/api/contests");
+		setContests(result.data.data);
+	};
+
+	const loadPastContests = async () => {
+		const result = await axios.get("/api/contests/past");
+		setPastContests(result.data.data);
+	};
+
 	return (
 		<div>
 			<h1 style={{ textAlign: "center" }}> Brand New</h1>
 			<div style={styles.grid}>
-				<ImageCard
-					title='Weekly Drive 1'
-					subTitle='2022-11-25 @ 8:00 PM'
-					info='2k Participants'
-					image='./drive.jpeg'
-					onClick={() => navigate("contest")}
-				/>
-				<ImageCard
-					title='Off Road 1'
-					subTitle='2022-11-26 @ 8:00 PM'
-					info='1.5k Participants'
-					image='./offroad.jpg'
-				/>
+				{contests?.map(contest => (
+					<ImageCard
+						key={contest.id}
+						title={contest.title}
+						subTitle={contest.start}
+						info={contest.type}
+						image={
+							contest.type === "OFFROAD"
+								? "./offroad.jpg"
+								: "./drive.jpeg"
+						}
+						onClick={() => navigate("/contests/" + contest.id)}
+					/>
+				))}
 			</div>
 			<h1 style={{ textAlign: "center" }}>Old is Gold</h1>
 			<div style={styles.grid}>
-				<ImageCard
-					title='Weekly Drive 1'
-					subTitle='2022-11-25 @ 8:00 PM'
-					info='2k Participants'
-					image='./drive.jpeg'
-				/>
-				<ImageCard
-					title='Off Road 1'
-					subTitle='2022-11-26 @ 8:00 PM'
-					info='1.5k Participants'
-					image='./offroad.jpg'
-				/>
+				{pastContests?.map(contest => (
+					<ImageCard
+						title={contest.title}
+						subTitle={contest.start}
+						info={contest.type}
+						image={
+							contest.type === "OFFROAD"
+								? "./offroad.jpg"
+								: "./drive.jpeg"
+						}
+						onClick={() => navigate("/contests/" + contest.id)}
+					/>
+				))}
 			</div>
 		</div>
 	);

@@ -1,17 +1,18 @@
 import React from "react";
 import colors from "../config/colors";
 
-export const SubNav = ({ menu }) => {
+export const SubNav = ({ menu, active, setActive }) => {
 	return (
 		<div style={styles.container}>
 			{menu.map(item => (
 				<div
 					key={item.value}
 					style={
-						item.value === 1
+						item.value == active
 							? { ...styles.menu, ...styles.active }
 							: styles.menu
-					}>
+					}
+					onClick={() => setActive(item.value)}>
 					{item.name}
 				</div>
 			))}

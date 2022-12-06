@@ -5,11 +5,19 @@ const colors = {
 	black: "#000",
 	white: "#fff",
 	medium: "#696a69",
-	light: "#f0f1f0",
-	danger: "#ff5555",
+	light: "#f3f4f3",
+	danger: "#e93535",
+	success: "#35ca3a",
 	dark: "#0c0c0c",
 	shadow: "0 0 8px #696e6955",
 	shadowLight: "0 0 8px #f4f4f455",
+	ROOKIE: "#777",
+	VETERAN: "green",
+	ELITE: "#03a9f4",
+	PRO: "yellow",
+	MASTER: "orange",
+	GRANDMASTER: "red",
+	LEGENDARY: "red",
 };
 
 export default colors;

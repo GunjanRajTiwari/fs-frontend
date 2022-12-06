@@ -2,7 +2,14 @@ import React from "react";
 import colors from "../config/colors";
 import { FaChevronRight } from "react-icons/fa";
 
-export const NumberCard = ({ number, title, subTitle, info, onClick }) => {
+export const NumberCard = ({
+	number,
+	title,
+	subTitle,
+	info,
+	onClick,
+	color = colors.primary,
+}) => {
 	return (
 		<div
 			onClick={onClick}
@@ -13,8 +20,10 @@ export const NumberCard = ({ number, title, subTitle, info, onClick }) => {
 				<h3>{title}</h3>
 				<small>{subTitle}</small>
 			</div>
-			<div style={styles.info}>{info}</div>
-			<FaChevronRight />
+			<div style={{ ...styles.info, backgroundColor: color }}>
+				{info}
+			</div>
+			{onClick && <FaChevronRight />}
 		</div>
 	);
 };
@@ -33,6 +42,8 @@ const styles = {
 		flex: 1,
 	},
 	info: {
+		minWidth: "100px",
+		textAlign: "center",
 		backgroundColor: colors.primary,
 		color: colors.light,
 		padding: "0.8em 1em",

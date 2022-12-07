@@ -2,11 +2,9 @@ import React from "react";
 import colors from "../config/colors";
 import { Button } from "../components/Button";
 
-const client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-
 export const Login = ({ setUser, setSignedIn }) => {
 	const googleLogin = () => {
-		window.open(process.env.REACT_APP_API + "/auth/google", "_self");
+		window.open("/auth/google", "_self");
 	};
 
 	return (

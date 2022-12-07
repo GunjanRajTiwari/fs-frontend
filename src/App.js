@@ -9,11 +9,15 @@ import { ContestPage } from "./pages/ContestPage";
 import { ProblemPage } from "./pages/ProblemPage";
 import { LeaderboardPage } from "./pages/LeaderboardPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import { Loading } from "./components/Loading";
 
 function App() {
 	const userObject = useContext(userContext);
+	console.log(userObject);
 
-	if (!userObject) return <Login />;
+	if (userObject === undefined) return <Loading />;
+
+	if (userObject === null) return <Login />;
 
 	return (
 		<div className='App'>
@@ -23,7 +27,7 @@ function App() {
 				<Route path='/contests' element={<ContestListPage />} />
 				<Route path='/contests/:id' element={<ContestPage />} />
 				<Route path='/profile' element={<ProfilePage />} />
-				<Route path='/problem' element={<ProblemPage />} />
+				<Route path='/problems/:id' element={<ProblemPage />} />
 				<Route path='/leaderboard' element={<LeaderboardPage />} />
 			</Routes>
 		</div>

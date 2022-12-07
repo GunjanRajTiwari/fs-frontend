@@ -66,25 +66,16 @@ export const ContestPage = () => {
 			<h1 style={styles.heading}>Weekly Drive 1</h1>
 			<p style={styles.heading}>Starting in: 00:02:33</p>
 			<div style={styles.problemList}>
-				<NumberCard
-					number='A'
-					title='Trapping Rain Water'
-					subTitle='Solved by: 152'
-					info='20 points'
-					onClick={() => navigate("/problem")}
-				/>
-				<NumberCard
-					number='B'
-					title='XOR Game'
-					subTitle='Solved by: 23'
-					info='30 points'
-				/>
-				<NumberCard
-					number='C'
-					title='Wierd Permutation'
-					subTitle='Solved by: 9'
-					info='50 points'
-				/>
+				{contest?.Problems?.map((problem, index) => (
+					<NumberCard
+						key={problem.id}
+						number={String.fromCharCode(65 + index)}
+						title={problem.title}
+						subTitle='Easy'
+						info={problem.point + " Points"}
+						onClick={() => navigate("/problems/" + problem.id)}
+					/>
+				))}
 			</div>
 			<h2 style={styles.heading}>Leaderboard</h2>
 			{me && (

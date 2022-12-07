@@ -9,12 +9,12 @@ export const Navbar = () => {
 	const [dropdown, setDropdown] = useState(false);
 
 	const handleLogout = () => {
-		window.open(process.env.REACT_APP_API + "/auth/logout", "_self");
+		window.open("/auth/logout", "_self");
 	};
 
 	return (
 		<div style={styles.container}>
-			<img style={styles.logo} src='./logo-white.png' />
+			<img style={styles.logo} src='/logo-white.png' />
 			<div
 				style={styles.menu}
 				onClick={() => setDropdown(!dropdown)}>
@@ -28,6 +28,13 @@ export const Navbar = () => {
 						to='/profile'
 						onClick={() => setDropdown(false)}>
 						Profile
+					</Link>
+					<Link
+						style={styles.item}
+						className='highlight'
+						to='/leaderboard'
+						onClick={() => setDropdown(false)}>
+						Leaderboard
 					</Link>
 					<Button title='Logout' onClick={handleLogout} />
 				</div>

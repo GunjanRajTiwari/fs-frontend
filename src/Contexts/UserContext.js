@@ -7,13 +7,18 @@ export const UserContext = ({ children }) => {
 
 	useEffect(() => {
 		axios
-			.get(process.env.REACT_APP_API + "/auth/user", {
+			.get("/auth/user", {
 				withCredentials: true,
 			})
 			.then(res => {
 				if (res.data) {
 					setUserObject(res.data);
+				} else {
+					setUserObject(null);
 				}
+			})
+			.catch(e => {
+				setUserObject(null);
 			});
 	}, []);
 	return (

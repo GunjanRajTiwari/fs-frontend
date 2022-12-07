@@ -8,36 +8,36 @@ const getColor = status => {
 	else return colors.danger;
 };
 
-const data = [
-	{
-		time: "2022-11-27 8:45 AM",
-		status: "PENDING",
-		lang: "C++",
-	},
-	{
-		time: "2022-11-27 8:39 AM",
-		status: "ACCEPTED",
-		lang: "C++",
-	},
-	{
-		time: "2022-11-27 8:35 AM",
-		status: "TLE",
-		lang: "Python",
-	},
-	{
-		time: "2022-11-27 8:25 AM",
-		status: "WRONG",
-		lang: "Python",
-	},
-];
+// const data = [
+// 	{
+// 		time: "2022-11-27 8:45 AM",
+// 		status: "PENDING",
+// 		lang: "C++",
+// 	},
+// 	{
+// 		time: "2022-11-27 8:39 AM",
+// 		status: "ACCEPTED",
+// 		lang: "C++",
+// 	},
+// 	{
+// 		time: "2022-11-27 8:35 AM",
+// 		status: "TLE",
+// 		lang: "Python",
+// 	},
+// 	{
+// 		time: "2022-11-27 8:25 AM",
+// 		status: "WRONG",
+// 		lang: "Python",
+// 	},
+// ];
 
-export const Submissions = () => {
+export const Submissions = ({ data }) => {
 	return (
 		<div style={styles.container}>
 			{data.map((submission, index) => (
 				<NumberCard
 					number={index + 1}
-					title={submission.lang}
+					title={submission.language}
 					subTitle={submission.time}
 					info={submission.status}
 					color={getColor(submission.status)}

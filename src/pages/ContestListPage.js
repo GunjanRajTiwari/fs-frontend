@@ -46,6 +46,7 @@ export const ContestListPage = () => {
 			<div style={styles.grid}>
 				{pastContests?.map(contest => (
 					<ImageCard
+						key={contest.id}
 						title={contest.title}
 						subTitle={contest.start}
 						info={contest.type}

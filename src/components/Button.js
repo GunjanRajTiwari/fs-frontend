@@ -1,9 +1,10 @@
 import React from "react";
 import colors from "../config/colors";
 
-export const Button = ({ title, style, onClick }) => {
+export const Button = ({ title, style, onClick, icon }) => {
 	return (
 		<button onClick={onClick} style={{ ...styles.button, ...style }}>
+			{icon && icon}
 			{title}
 		</button>
 	);
@@ -20,5 +21,7 @@ const styles = {
 		fontWeight: 500,
 		border: "none",
 		cursor: "pointer",
+		display: "flex",
+		alignItems: "center",
 	},
 };

@@ -21,12 +21,16 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Navbar />
+			<Navbar userObject={userObject} />
 			<Routes>
 				<Route path='/' element={<ContestListPage />} />
 				<Route path='/contests' element={<ContestListPage />} />
 				<Route path='/contests/:id' element={<ContestPage />} />
 				<Route path='/profile' element={<ProfilePage />} />
+				<Route
+					path='/profile/:username'
+					element={<ProfilePage />}
+				/>
 				<Route path='/problems/:id' element={<ProblemPage />} />
 				<Route path='/leaderboard' element={<LeaderboardPage />} />
 			</Routes>

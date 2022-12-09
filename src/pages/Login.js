@@ -18,6 +18,9 @@ export const Login = ({ setUser, setSignedIn }) => {
 			<div style={styles.right}>
 				<div id='signInButton'>
 					<Button
+						icon={
+							<img style={styles.google} src='/google.png' />
+						}
 						title='Login with Google'
 						onClick={googleLogin}
 					/>
@@ -30,7 +33,7 @@ export const Login = ({ setUser, setSignedIn }) => {
 const styles = {
 	container: {
 		display: "grid",
-		gridTemplateColumns: "1fr 1fr",
+		gridTemplateColumns: "repeat(auto-fit, minmax(400px,1fr))",
 		textAlign: "center",
 		height: "100vh",
 	},
@@ -57,5 +60,9 @@ const styles = {
 		maxWidth: "400px",
 		fontSize: "2.4rem",
 		lineHeight: "1.8em",
+	},
+	google: {
+		height: "24px",
+		padding: "0 0.8em 0 0",
 	},
 };

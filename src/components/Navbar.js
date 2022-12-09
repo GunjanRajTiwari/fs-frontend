@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaChevronDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import colors from "../config/colors";
 import { Button } from "./Button";
 
-export const Navbar = () => {
+export const Navbar = ({ userObject }) => {
 	const [dropdown, setDropdown] = useState(false);
 
 	const handleLogout = () => {
@@ -14,18 +14,29 @@ export const Navbar = () => {
 
 	return (
 		<div style={styles.container}>
-			<img style={styles.logo} src='/logo-white.png' />
+			<Link to='/'>
+				<img style={styles.logo} src='/logo-white.png' />
+			</Link>
 			<div
 				style={styles.menu}
 				onClick={() => setDropdown(!dropdown)}>
-				<FaRegUser size={16} />
+				{userObject ? (
+					<img
+						referrerpolicy='no-referrer'
+						style={styles.avatar}
+						src={userObject.avatar}
+					/>
+				) : (
+					<FaRegUser style={styles.icon} size={16} />
+				)}
+				<FaChevronDown style={styles.icon} size={16} />
 			</div>
 			{dropdown && (
 				<div style={styles.dropdown}>
 					<Link
 						style={styles.item}
 						className='highlight'
-						to='/profile'
+						to={"/profile/" + userObject.username}
 						onClick={() => setDropdown(false)}>
 						Profile
 					</Link>
@@ -59,10 +70,11 @@ const styles = {
 	menu: {
 		backgroundColor: colors.white,
 		height: "32px",
-		width: "32px",
+		width: "64px",
 		borderRadius: "2em",
-		display: "grid",
-		placeItems: "center",
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center",
 		color: colors.primary,
 	},
 	dropdown: {
@@ -86,5 +98,12 @@ const styles = {
 		textAlign: "center",
 		borderRadius: "1em",
 		marginBottom: "0.5em",
+	},
+	avatar: {
+		height: "32px",
+		borderRadius: "50%",
+	},
+	icon: {
+		margin: "0 0.6em",
 	},
 };

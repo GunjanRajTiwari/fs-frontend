@@ -1,69 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaCrown } from "react-icons/fa";
 import { LineChart } from "../components/LineChart";
 import { NumberCard } from "../components/NumberCard";
 import colors from "../config/colors";
-
-const profile = {
-	id: 123,
-	username: "GunZaaN",
-	name: "Gunjan Raj Tiwari",
-	avatar: "https://gunjanraj.netlify.app/assets/avatar.png",
-	rank: "ELITE",
-	rating: 1408,
-	contests: [
-		{
-			id: 2,
-			title: "Weekly Drive 3",
-			solved: 3,
-			rank: 3,
-			start: "2022-09-26",
-			rating: 900,
-		},
-		{
-			id: 3,
-			title: "Off Road 1",
-			solved: 2,
-			rank: 2880,
-			start: "2022-10-27",
-			rating: 1200,
-		},
-		{
-			id: 4,
-			title: "Weekly Drive 4",
-			solved: 3,
-			rank: 3,
-			start: "2022-11-26",
-			rating: 980,
-		},
-		{
-			id: 5,
-			title: "Off Road 2",
-			solved: 2,
-			rank: 2880,
-			start: "2022-12-27",
-			rating: 1210,
-		},
-		{
-			id: 6,
-			title: "Weekly Drive 3",
-			solved: 3,
-			rank: 3,
-			start: "2023-01-26",
-			rating: 1609,
-		},
-		{
-			id: 3,
-			title: "Off Road 1",
-			solved: 2,
-			rank: 2880,
-			start: "2023-04-27",
-			rating: 1877,
-		},
-	],
-};
+import { Loading } from "../components/Loading";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const ProfilePage = () => {
+	const [profile, setProfile] = useState();
+	const [contests, setContests] = useState([]);
+	const { username } = useParams();
+
+	useEffect(() => {
+		loadProfile();
+	}, []);
+
+	const loadProfile = async () => {
+		const { data } = await axios.get("/api/user/" + username);
+		if (!data.data) {
+			alert("No user with this username.");
+			return;
+		}
+		var { Contests, ...userProfile } = data.data;
+		setProfile(userProfile);
+		var contestHistory = data.data.Contests;
+
+		let rating = 0;
+		var contestHistory = contestHistory.map(c => {
+			var { Register, ...contestData } = c;
+			contestData.start = new Date(contestData.start).toDateString();
+			rating += c.Register.change;
+			return { ...contestData, ...c.Register, rating };
+		});
+		setContests(contestHistory);
+	};
+
+	if (!profile) return <Loading />;
+
 	return (
 		<div>
 			<div style={styles.profile}>
@@ -79,20 +53,27 @@ export const ProfilePage = () => {
 					<div>{"@" + profile.username}</div>
 					<div style={styles.rating}>{profile.rating}</div>
 				</div>
-				<img style={styles.avatar} src={profile.avatar} />
+				<img
+					referrerpolicy='no-referrer'
+					style={styles.avatar}
+					src={profile.avatar}
+				/>
 			</div>
-			<LineChart data={profile.contests} />
-			{profile.contests && profile.contests.length > 0 && (
+			<LineChart data={contests} />
+			{contests && contests.length > 0 && (
 				<div style={styles.history}>
 					<h2 style={styles.heading}>History</h2>
 
-					{profile.contests.map((contest, index) => (
+					{contests.map((contest, index) => (
 						<NumberCard
 							key={index}
 							number={index + 1}
 							title={contest.title}
 							subTitle={"Solved: " + contest.solved}
-							info={"# " + contest.rank}
+							info={
+								(contest.change > 0 && " + ") +
+								contest.change
+							}
 						/>
 					))}
 				</div>
@@ -125,13 +106,18 @@ const styles = {
 		color: colors.light,
 	},
 	avatar: {
-		width: "200px",
-		height: "200px",
+		width: "100px",
+		height: "100px",
 		objectFit: "cover",
 		borderRadius: "2em",
 	},
 	rank: {
-		fontSize: "1.2rem",
+		fontSize: "1.1rem",
+		padding: "0.3em 1em",
+		borderRadius: "200px",
+		backgroundColor: colors.white,
+		maxWidth: "160px",
+		marginBottom: "0.5em",
 	},
 	name: {
 		fontSize: "1.5rem",

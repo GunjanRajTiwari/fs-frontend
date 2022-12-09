@@ -21,8 +21,11 @@ export const ProblemPage = () => {
 	const loadProblem = async () => {
 		const { data } = await axios.get("/api/problems/" + id);
 		if (data.error) alert(data.error);
-		console.log(data.data);
 		setProblem(data.data);
+	};
+
+	const handleSubmit = submission => {
+		alert("Submission is under maintainence!");
 	};
 
 	return (
@@ -48,7 +51,11 @@ export const ProblemPage = () => {
 						<Submissions data={problem.solutions} />
 					)}
 				</div>
-				<CodeEditor style={styles.right} languages={languages} />
+				<CodeEditor
+					onSubmit={handleSubmit}
+					style={styles.right}
+					languages={languages}
+				/>
 			</div>
 		</div>
 	);

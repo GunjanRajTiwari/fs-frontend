@@ -6,11 +6,11 @@ ChartJS.register(...registerables);
 
 export const LineChart = ({ data }) => {
 	const chartData = {
-		labels: data.map(d => d.start),
+		labels: ["Start", ...data.map(d => d.start)],
 		datasets: [
 			{
 				label: "Rating",
-				data: data.map(d => d.rating),
+				data: [0, ...data.map(d => d.rating)],
 				borderColor: colors.primary,
 				borderWidth: 2,
 			},
@@ -27,6 +27,19 @@ export const LineChart = ({ data }) => {
 					plugins: {
 						legend: {
 							display: false,
+						},
+						tooltip: {
+							callbacks: {
+								label: context => {
+									if (context.dataIndex == 0)
+										return "Start";
+									return (
+										data[context.dataIndex - 1].title +
+										" : " +
+										context.formattedValue
+									);
+								},
+							},
 						},
 					},
 				}}

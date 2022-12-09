@@ -4,6 +4,7 @@ import { NumberCard } from "../components/NumberCard";
 import { Leaderboard } from "../components/Leaderboard";
 import colors from "../config/colors";
 import axios from "axios";
+import { Button } from "../components/Button";
 
 // const data = [
 // 	{
@@ -43,6 +44,7 @@ export const ContestPage = () => {
 
 	const loadContest = async () => {
 		const result = await axios.get("/api/contests/" + id);
+		console.log(result.data.data);
 		setContest(result.data.data);
 	};
 
@@ -61,22 +63,49 @@ export const ContestPage = () => {
 		setLeaderboard(data);
 	};
 
+	const handleRegister = async () => {
+		console.log(contest.id);
+		const { data } = await axios.post(
+			"/api/contests/" + contest.id + "/register"
+		);
+		if (data.error) {
+			alert(data.error);
+			return;
+		}
+		alert("Registered Successfully !!");
+		loadContest();
+	};
+
 	return (
 		<div>
 			<h1 style={styles.heading}>Weekly Drive 1</h1>
 			<p style={styles.heading}>Starting in: 00:02:33</p>
-			<div style={styles.problemList}>
-				{contest?.Problems?.map((problem, index) => (
-					<NumberCard
-						key={problem.id}
-						number={String.fromCharCode(65 + index)}
-						title={problem.title}
-						subTitle='Easy'
-						info={problem.point + " Points"}
-						onClick={() => navigate("/problems/" + problem.id)}
-					/>
-				))}
-			</div>
+
+			{contest && !contest.registered && !contest.started && (
+				<Button
+					style={styles.registerBtn}
+					title='Register'
+					onClick={handleRegister}
+				/>
+			)}
+
+			{contest?.Problems && (
+				<div style={styles.problemList}>
+					{contest?.Problems?.map((problem, index) => (
+						<NumberCard
+							key={problem.id}
+							number={String.fromCharCode(65 + index)}
+							title={problem.title}
+							subTitle='Easy'
+							info={problem.point + " Points"}
+							onClick={() =>
+								navigate("/problems/" + problem.id)
+							}
+						/>
+					))}
+				</div>
+			)}
+
 			<h2 style={styles.heading}>Leaderboard</h2>
 			{me && (
 				<div style={styles.me}>
@@ -88,10 +117,11 @@ export const ContestPage = () => {
 					/>
 				</div>
 			)}
+
 			<Leaderboard leaderboard={leaderboard} showLabel />
+
 			<div style={styles.description}>
-				This contest will have 3 questions of varying difficulty.
-				Bla bla bla description about the contest
+				{contest && contest.description}
 			</div>
 		</div>
 	);
@@ -121,5 +151,9 @@ const styles = {
 		maxWidth: "800px",
 		borderRadius: "2em",
 		padding: "1em",
+	},
+	registerBtn: {
+		margin: "2em auto",
+		boxShadow: colors.shadow,
 	},
 };

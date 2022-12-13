@@ -5,7 +5,7 @@ export const Button = ({ title, style, onClick, icon }) => {
 	return (
 		<button onClick={onClick} style={{ ...styles.button, ...style }}>
 			{icon && icon}
-			{title}
+			<span>{title}</span>
 		</button>
 	);
 };
@@ -23,5 +23,6 @@ const styles = {
 		cursor: "pointer",
 		display: "flex",
 		alignItems: "center",
+		justifyContent: "space-around",
 	},
 };

@@ -10,10 +10,12 @@ import { ProblemPage } from "./pages/ProblemPage";
 import { LeaderboardPage } from "./pages/LeaderboardPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { Loading } from "./components/Loading";
+import { ProblemListPage } from "./pages/ProblemListPage";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
 	const userObject = useContext(userContext);
-	console.log(userObject);
+	// console.log(userObject);
 
 	if (userObject === undefined) return <Loading />;
 
@@ -26,13 +28,14 @@ function App() {
 				<Route path='/' element={<ContestListPage />} />
 				<Route path='/contests' element={<ContestListPage />} />
 				<Route path='/contests/:id' element={<ContestPage />} />
-				<Route path='/profile' element={<ProfilePage />} />
 				<Route
 					path='/profile/:username'
 					element={<ProfilePage />}
 				/>
 				<Route path='/problems/:id' element={<ProblemPage />} />
 				<Route path='/leaderboard' element={<LeaderboardPage />} />
+				<Route path='/problems' element={<ProblemListPage />} />
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</div>
 	);

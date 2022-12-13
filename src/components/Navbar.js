@@ -40,6 +40,23 @@ export const Navbar = ({ userObject }) => {
 						onClick={() => setDropdown(false)}>
 						Profile
 					</Link>
+
+					<Link
+						style={styles.item}
+						className='highlight'
+						to={"/problems"}
+						onClick={() => setDropdown(false)}>
+						Problems
+					</Link>
+
+					<Link
+						style={styles.item}
+						className='highlight'
+						to={"/contests"}
+						onClick={() => setDropdown(false)}>
+						Contests
+					</Link>
+
 					<Link
 						style={styles.item}
 						className='highlight'
@@ -47,7 +64,12 @@ export const Navbar = ({ userObject }) => {
 						onClick={() => setDropdown(false)}>
 						Leaderboard
 					</Link>
-					<Button title='Logout' onClick={handleLogout} />
+
+					<Button
+						style={{ textAlign: "center" }}
+						title='Logout'
+						onClick={handleLogout}
+					/>
 				</div>
 			)}
 		</div>
@@ -95,7 +117,7 @@ const styles = {
 		textDecoration: "none",
 		color: "inherit",
 		padding: "1em",
-		textAlign: "center",
+		// textAlign: "center",
 		borderRadius: "1em",
 		marginBottom: "0.5em",
 	},

@@ -6,29 +6,6 @@ import colors from "../config/colors";
 import axios from "axios";
 import { Button } from "../components/Button";
 
-// const data = [
-// 	{
-// 		rank: 1,
-// 		name: "Gunjan Raj Tiwari",
-// 		score: 1987,
-// 	},
-// 	{
-// 		rank: 20,
-// 		name: "Sandesh Dhungana",
-// 		score: 1965,
-// 	},
-// 	{
-// 		rank: 300,
-// 		name: "Umesh Saud",
-// 		score: 1958,
-// 	},
-// 	{
-// 		rank: 4000,
-// 		name: "Tourist",
-// 		score: 1922,
-// 	},
-// ];
-
 export const ContestPage = () => {
 	const navigate = useNavigate();
 	const { id } = useParams();

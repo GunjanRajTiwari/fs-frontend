@@ -5,29 +5,6 @@ import { Loading } from "../components/Loading";
 import { NumberCard } from "../components/NumberCard";
 import colors from "../config/colors";
 
-const data = [
-	{
-		rank: 1,
-		name: "Gunjan Raj Tiwari",
-		score: 1987,
-	},
-	{
-		rank: 20,
-		name: "Sandesh Dhungana",
-		score: 1965,
-	},
-	{
-		rank: 300,
-		name: "Umesh Saud",
-		score: 1958,
-	},
-	{
-		rank: 4000,
-		name: "Tourist",
-		score: 1922,
-	},
-];
-
 export const LeaderboardPage = () => {
 	const [leaderboard, setLeaderboard] = useState();
 	const [me, setMe] = useState();
@@ -44,7 +21,7 @@ export const LeaderboardPage = () => {
 			row.name = user.name;
 			row.rank = user.place;
 			row.score = user.rating;
-			row.url = "/user/" + user.username;
+			row.url = "/profile/" + user.username;
 			row.color = user.rank;
 			return row;
 		});

@@ -14,10 +14,10 @@ const colors = {
 	ROOKIE: "#777",
 	VETERAN: "green",
 	ELITE: "#03a9f4",
-	PRO: "yellow",
-	MASTER: "orange",
-	GRANDMASTER: "red",
-	LEGENDARY: "red",
+	PRO: "#EE59A4",
+	MASTER: "purple",
+	GRANDMASTER: "#ff7010",
+	LEGENDARY: "#e00",
 };
 
 export default colors;

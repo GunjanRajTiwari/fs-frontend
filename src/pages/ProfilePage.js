@@ -116,7 +116,7 @@ const styles = {
 		padding: "0.3em 1em",
 		borderRadius: "200px",
 		backgroundColor: colors.white,
-		maxWidth: "160px",
+		width: "fit-content",
 		marginBottom: "0.5em",
 	},
 	name: {

@@ -7,6 +7,7 @@ import colors from "../config/colors";
 import languages from "../config/languages";
 import problemMenu from "../config/problemMenu";
 import { useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import axios from "axios";
 
 export const ProblemPage = () => {
@@ -24,8 +25,15 @@ export const ProblemPage = () => {
 		setProblem(data.data);
 	};
 
-	const handleSubmit = submission => {
-		alert("Submission is under maintainence!");
+	const handleSubmit = async solution => {
+		try {
+			await axios.post("/api/problems/" + id + "/submit", solution);
+			loadProblem();
+			setActive(2);
+		} catch (e) {
+			alert("Something went wrong !!!");
+			console.log(e);
+		}
 	};
 
 	return (
@@ -43,9 +51,9 @@ export const ProblemPage = () => {
 						setActive={setActive}
 					/>
 					{active === 1 && (
-						<div style={styles.description}>
+						<ReactMarkdown style={styles.description}>
 							{problem?.description || "........."}
-						</div>
+						</ReactMarkdown>
 					)}
 					{active === 2 && (
 						<Submissions data={problem.solutions} />
@@ -80,5 +88,8 @@ const styles = {
 		whiteSpace: "pre-wrap",
 		overflowY: "auto",
 		height: "80vh",
+	},
+	left: {
+		padding: "0 1em",
 	},
 };

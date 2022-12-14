@@ -1,5 +1,6 @@
 import React from "react";
 import colors from "../config/colors";
+import languages from "../config/languages";
 import { NumberCard } from "./NumberCard";
 
 const getColor = status => {
@@ -31,13 +32,18 @@ const getColor = status => {
 // 	},
 // ];
 
+var langSet = {};
+languages.forEach(l => {
+	langSet[l.backendCode] = l.name;
+});
+
 export const Submissions = ({ data }) => {
 	return (
 		<div style={styles.container}>
 			{data.map((submission, index) => (
 				<NumberCard
 					number={index + 1}
-					title={submission.language}
+					title={langSet[submission.language]}
 					subTitle={submission.time}
 					info={submission.status}
 					color={getColor(submission.status)}

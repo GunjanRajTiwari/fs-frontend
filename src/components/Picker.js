@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import colors from "../config/colors";
-import { Button } from "./Button";
+import { FaChevronDown } from "react-icons/fa";
 
 export const Picker = ({ style, placeholder, options, onChange }) => {
 	const [drop, setDrop] = useState(false);
 	const [selected, setSelected] = useState();
 
 	const handleClick = () => {
-		setDrop(true);
+		setDrop(!drop);
 	};
 
 	const handleSelect = item => {
@@ -18,10 +18,10 @@ export const Picker = ({ style, placeholder, options, onChange }) => {
 
 	return (
 		<div style={{ ...styles.container, ...style }}>
-			<Button
-				onClick={handleClick}
-				title={selected ? selected.name + "...v" : placeholder + "...v"}
-			/>
+			<div style={styles.picker} onClick={handleClick}>
+				{selected ? selected.name : placeholder}{" "}
+				<FaChevronDown size={12} />
+			</div>
 			<div style={styles.dropdown}>
 				{drop &&
 					options.map(item => (
@@ -50,5 +50,15 @@ const styles = {
 		maxHeight: "200px",
 		overflowY: "auto",
 		minWidth: "120px",
+	},
+	picker: {
+		padding: "0.5em 1.4em",
+		borderBottom: "1px solid " + colors.primary,
+		display: "inline block",
+		width: "fit-content",
+		backgroundColor: colors.light,
+		display: "flex",
+		alignItems: "center",
+		gap: "0.5em",
 	},
 };

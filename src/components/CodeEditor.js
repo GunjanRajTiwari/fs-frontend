@@ -19,7 +19,7 @@ export const CodeEditor = ({ style, onSubmit, languages, code }) => {
 	};
 
 	const handleSubmit = () => {
-		onSubmit(value);
+		onSubmit({ code: value, language: language.backendCode });
 	};
 
 	return (
@@ -34,10 +34,13 @@ export const CodeEditor = ({ style, onSubmit, languages, code }) => {
 				width={`100%`}
 				language={language ? language.code : "plaintext"}
 				value={
-					language ? language.defaultCode : "Choose a language ..."
+					language
+						? language.defaultCode
+						: "Choose a language ..."
 				}
 				onChange={handleEditorChange}
 				theme='vs-dark'
+				style={styles.editor}
 			/>
 			<Button
 				style={styles.language}
@@ -52,8 +55,11 @@ const styles = {
 	container: {
 		height: "75vh",
 	},
+	editor: {
+		borderRadius: "1em",
+	},
 	language: {
-		float: "right",
+		// float: "right",
 		margin: "0.5em 5%",
 	},
 };

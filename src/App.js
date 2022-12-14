@@ -12,6 +12,16 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { Loading } from "./components/Loading";
 import { ProblemListPage } from "./pages/ProblemListPage";
 import { NotFound } from "./pages/NotFound";
+import { LandingPage } from "./pages/LandingPage";
+
+function NavRoute({ path, element, userObject }) {
+	return (
+		<>
+			<Navbar userObject={userObject} />
+			<Route path={path} element={element} />
+		</>
+	);
+}
 
 function App() {
 	const userObject = useContext(userContext);
@@ -19,22 +29,45 @@ function App() {
 
 	if (userObject === undefined) return <Loading />;
 
-	if (userObject === null) return <Login />;
-
 	return (
 		<div className='App'>
-			<Navbar userObject={userObject} />
 			<Routes>
-				<Route path='/' element={<ContestListPage />} />
-				<Route path='/contests' element={<ContestListPage />} />
-				<Route path='/contests/:id' element={<ContestPage />} />
-				<Route
-					path='/profile/:username'
-					element={<ProfilePage />}
-				/>
-				<Route path='/problems/:id' element={<ProblemPage />} />
-				<Route path='/leaderboard' element={<LeaderboardPage />} />
-				<Route path='/problems' element={<ProblemListPage />} />
+				<Route path='/' element={<LandingPage />} />
+				<Route path='/login' element={<Login />} />
+				{userObject && (
+					<>
+						<NavRoute
+							userObject={userObject}
+							path='/contests'
+							element={<ContestListPage />}
+						/>
+						<NavRoute
+							userObject={userObject}
+							path='/contests/:id'
+							element={<ContestPage />}
+						/>
+						<NavRoute
+							userObject={userObject}
+							path='/profile/:username'
+							element={<ProfilePage />}
+						/>
+						<NavRoute
+							userObject={userObject}
+							path='/problems/:id'
+							element={<ProblemPage />}
+						/>
+						<NavRoute
+							userObject={userObject}
+							path='/leaderboard'
+							element={<LeaderboardPage />}
+						/>
+						<NavRoute
+							userObject={userObject}
+							path='/problems'
+							element={<ProblemListPage />}
+						/>
+					</>
+				)}
 				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</div>
